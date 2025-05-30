@@ -14,18 +14,23 @@ const maradek = (a,b) =>{
 const elso = 13;
 const szamrendszer = 2;
 
-const masodik = osztas(elso, szamrendszer);
-const maradekelso = maradek(elso, szamrendszer)
-console.log(masodik);
-console.log(maradekelso);
+const array = [];
+const arrayszam = [];
 
-const harmadik = osztas(masodik, szamrendszer);
-const maradekmasodik = maradek(masodik, szamrendszer);
-console.log(harmadik);
-console.log(maradekmasodik);
+arrayszam.push(osztas(elso, szamrendszer));
 
-const negyedik = osztas(harmadik, szamrendszer);
-const maradekharmadik = maradek(harmadik, szamrendszer);
-console.log(negyedik);
-console.log(maradekharmadik);
+array.push(maradek(elso, szamrendszer));
+
+arrayszam.push(osztas(arrayszam[0], szamrendszer))
+
+array.push(maradek(arrayszam[0], szamrendszer));
+
+arrayszam.push(osztas(array[1], szamrendszer));
+
+array.push(maradek(array[1], szamrendszer));
+
+console.log(array);
+
+
+console.log(arrayszam)
 
