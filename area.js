@@ -30,7 +30,7 @@ class Table extends Area{
 
     constructor(cssClass){
         super(cssClass);
-        const tbody = this.#makeTableheader();
+        this.#makeTableheader();
     }
 
     #makeTableheader(){
@@ -52,9 +52,13 @@ class Table extends Area{
         }
 
         const tbody = document.createElement("tbody");
+        tbody.id = "tbody";
         table.appendChild(tbody);
 
-        return tbody;
+        const eredmenyszoveg = document.createElement("p");
+        eredmenyszoveg.id = "erdemeny";
+        this.div.appendChild(eredmenyszoveg);
+
     }
 }
 

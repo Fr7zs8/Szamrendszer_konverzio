@@ -1,0 +1,10 @@
+table, thead, tr,td, th{
+    border: solid, black, 1px;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+}
+
+tbody tr:first-child{
+    background-color: gray;
+}
