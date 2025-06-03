@@ -4,7 +4,10 @@ class Area{
      */
     #div;
 
-    constructor(cssClass){
+    #manager;
+
+    constructor(cssClass, manager){
+        this.#manager = manager;
         const container = this.#getContainer();
         this.#div = document.createElement("div");
         this.#div.className = cssClass;
@@ -13,6 +16,10 @@ class Area{
 
     get div(){
         return this.#div;
+    }
+
+    get manager(){
+        return this.#manager;
     }
 
     #getContainer(){
@@ -28,9 +35,12 @@ class Area{
 
 class Table extends Area{
 
-    constructor(cssClass){
-        super(cssClass);
-        this.#makeTableheader();
+    #tbody;
+       
+    constructor(cssClass, manager){
+        super(cssClass, manager);
+        this.#tbody = this.#makeTableheader();
+        manager.setAddCallback((dataarray) => this.#maketable(dataarray));
     }
 
     #makeTableheader(){
@@ -59,12 +69,32 @@ class Table extends Area{
         eredmenyszoveg.id = "erdemeny";
         this.div.appendChild(eredmenyszoveg);
 
+        return tbody;
+
     }
+
+    #maketable(array){
+        this.#tbody.innerHTML = "";
+
+        for (let i = 0; i < array.length; i++) {
+            const tr = document.createElement("tr");
+            this.#tbody.appendChild(tr);
+
+            const row = array[i];
+
+            for (let j = 0; j < row.length; j++) {
+                const td = document.createElement("td");
+                td.innerHTML = row[j];
+                tr.appendChild(td);
+            }
+        }
+    }
+
 }
 
 class Form extends Area{
-    constructor(cssClass){
-        super(cssClass);
+    constructor(cssClass, manager){
+        super(cssClass, manager);
         this.#makeForm();
     }
 

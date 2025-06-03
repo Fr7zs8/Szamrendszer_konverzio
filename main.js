@@ -69,36 +69,29 @@ function Logic(){
     maradekok.push(maradek(szamok[szamok.length-2], rendszerValue));
     }
 
-    const tbody = document.getElementById("tbody");
-
-    for(let i = 0; i<szamok.length; i++){
-        const tr = document.createElement("tr");
-        tbody.appendChild(tr);
-
-        const td = document.createElement("td");
-        td.innerHTML = szamok[i];
-        tr.appendChild(td);
-
-        const td2 = document.createElement("td");
-        td2.innerHTML = maradekok[i];
-        tr.appendChild(td2);
-
-    }
-
     const eredmeny = document.getElementById("erdemeny");
 
     const eredmenyhalm = []
     for(let i = maradekok.length-1; i > 0; i--){
         eredmenyhalm.push(maradekok[i]);
     }
-    
+
+    const data = [];
+    for (let i = 0; i < szamok.length; i++) {
+        const row = [];
+        row.push(szamok[i]);
+        row.push(maradekok[i]);
+        data.push(row);
+    }
+
+    manager.add(data);
 
     eredmeny.innerHTML = `${szamvalue}<sub>10</sub> = ${eredmenyhalm.join('')}<sub>${rendszerValue}</sub>`
 }
 
-
-const formClass = new Form("form");
-const table = new Table("table");
+const manager = new Manager();
+const formClass = new Form("form", manager);
+const table = new Table("table", manager);
 
 const form = document.getElementById("form");
 
